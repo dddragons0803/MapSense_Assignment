@@ -1,0 +1,31 @@
+.buttons{
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    gap: 60px;
+    justify-content: center;
+}
+
+.table-button{     
+        justify-content: center;
+        margin: auto;
+        margin-top: 25px;
+        padding: 22px 54px;
+        color: #ECECEC;
+        border-radius: 5px;
+        font-size: 22px;
+        font-weight: 600;
+        border: none;
+        margin-bottom: 20px;
+        cursor: pointer;
+        
+}
+
+.back{
+    background-color: #FF3838;
+    
+}
+
+.update{
+background-color: #332272;
+}
