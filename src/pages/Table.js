@@ -4,11 +4,13 @@ import './Table.css'
 // import Button from '../component/Button';
 import './Button.css'
 import logo from '../assets/Mapsense Logo.png'
+import Loader from '../component/Loader'
 
 const Table = () => {
 
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
+  const [loader, setLoader] = useState(true);
   const location = useLocation();
   // console.log(data);
   // console.log(location);
@@ -21,6 +23,7 @@ const Table = () => {
         setData(data);
         console.log(data, typeof (data));
         // setUpdate((item)=>!{item});
+        setLoader(false);
       })
       .catch(error => console.error('Error:', error));
   }, [update]);
@@ -40,6 +43,9 @@ const Table = () => {
 
 
   return (
+
+    loader? <Loader/>
+    :
     <div>
       <div className='userinfo'>
         <p style={{ display: 'inline-block', margin: '0', fontSize: '2.4rem', color: 'black' }} className='username'>
@@ -92,7 +98,7 @@ const Table = () => {
 
         </div>
         <div>
-          <button className="table-button update" type="button" onClick={()=>setUpdate(!update)} >
+          <button className="table-button update" type="button" onClick={()=>{setUpdate(!update); setLoader(true)}} >
             Update Data
           </button>
         </div>
