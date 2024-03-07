@@ -8,11 +8,25 @@ function RightHalf() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [pincode, setPincode] = useState('');
-
+  const [formFilled, setFormFilled] = useState(false);
+  
   const handleResetForm = () => {
     setFirstName('');
     setLastName('');
     setPincode('');
+    setFormFilled(false);
+  };
+
+  const handleShowStatistics = () => {
+    if (firstName && lastName && pincode) {
+      // Only navigate if the form is filled
+      setFormFilled(true);
+    } else {
+      // Display a message or handle the case when the form is not filled
+      alert("Please fill in all fields before proceeding.");
+     
+      setFormFilled(false);
+    }
   };
 
   return (
@@ -29,6 +43,7 @@ function RightHalf() {
             className="form-input"
             value={firstName}
             placeholder='First Name'
+            required="required"
             onChange={(e) => setFirstName(e.target.value)}
           />
         </label>
@@ -40,6 +55,7 @@ function RightHalf() {
             className="form-input"
             value={lastName}
             placeholder='Last Name'
+            required="required"
             onChange={(e) => setLastName(e.target.value)}
           />
         </label>
@@ -51,16 +67,23 @@ function RightHalf() {
             className="form-input"
             value={pincode}
             placeholder='Pincode'
+            required="required"
             onChange={(e) => setPincode(e.target.value)}
           />
         </label>
         
-        {/* <Link to={{ pathname: "/table", state: { firstName: firstName, lastName: lastName, pincode: pincode } }}> */}
-        <Link to='/table' state={{ firstName: firstName, lastName: lastName, pincode: pincode }}>
-          <button className="form-button stats" type="button">
+    {formFilled ? <Link to='/table' state={{ firstName: firstName, lastName: lastName, pincode: pincode }}>
+          <button className="form-button stats" type="button" onClick={handleShowStatistics} >
             Show Statistics
           </button>
-        </Link>
+            </Link> : <Link to='/' >
+          <button className="form-button stats" type="button" onClick={handleShowStatistics} >
+            Show Statistics
+          </button>
+            </Link>}
+         
+         
+       
         <button className="form-button reset" type="button" onClick={handleResetForm}>
           Reset Form
         </button>

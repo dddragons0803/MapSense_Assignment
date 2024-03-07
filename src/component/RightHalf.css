@@ -58,6 +58,11 @@
     cursor: pointer;
   }
 
+  .form-button.disabled {
+    background-color: #ccc; /* Change the background color to a visually subdued color */
+    color: #666; /* Change the text color to a subdued color */
+    cursor: not-allowed; /* Change the cursor to indicate the button is not clickable */
+  }
 
   .stats{
     margin-top: 35px;

@@ -41,17 +41,22 @@ const Table = () => {
 
 
 
-
+  console.log(`firstname : ${firstName}`);
   return (
 
     loader? <Loader/>
     :
     <div>
       <div className='userinfo'>
-        <p style={{ display: 'inline-block', margin: '0', fontSize: '2.4rem', color: 'black' }} className='username'>
-          <span style={{ display: 'inline-block', margin: '0', fontWeight: 'bold', fontSize: '4rem', margin: '0' }}>{firstName.slice(0, 1)}</span>{firstName.slice(1)} {lastName},
-        </p>
-        <p style={{ display: 'inline-block', margin: '0' }}>{pincode}</p>
+      {firstName && (
+      <p style={{ display: 'inline-block', margin: '0', fontSize: '2.4rem', color: 'black' }} className='username'>
+              <span style={{ display: 'inline-block', margin: '0', fontWeight: 'bold', fontSize: '4rem' }}>{firstName.slice(0, 1)}</span>
+              {firstName.slice(1)}
+              {lastName && <span style={{ display: 'inline-block', margin: '0' }}><pre> {lastName},</pre></span>}
+             
+            </p>
+          )}
+          {pincode&&<p style={{ display: 'inline-block', margin: '0' }}>{pincode}</p>}
       </div>
       <div className='logoo'>
         <img src={logo} alt="logo" className="logoimage" />
@@ -72,7 +77,7 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            {data !== "Not found" && data.map((item, index) => (
+            {data !== "Not found" ?  data.map((item, index) => (
               <tr key={index}>
                 <td>{item.pincode}</td>
                 <td>{item.district}</td>
@@ -84,7 +89,8 @@ const Table = () => {
                 <td>{item.slot}</td>
                 <td>{item.id}</td>
               </tr>
-            ))}
+            )) : <p>No Data Available for this Pincode</p>
+             }
           </tbody>
         </table>
       </div>
