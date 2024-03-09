@@ -4,25 +4,27 @@ import './Table.css'
 import './Button.css'
 import Loader from '../component/Loader'
 
-const Table = ({ firstName, lastName, pincode }) => {
+const Table = ({ firstName, lastName, pincode, setFirstName, setLastName, setPincode }) => {
 
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    fetch(`https://65e5e94cd7f0758a76e7bb2d.mockapi.io/api/v1/findByPincode?pincode=${pincode}`)
+    fetch(`https://65e5e94cd7f0758a76e7bb2d.mockapi.io/api/v1/findByPincode?pincode=${localStorage.getItem("pincode")}`)
       .then(response => response.json())
       .then(data => {
         setData(data);
         console.log(data, typeof (data));
         // setUpdate((item)=>!{item});
+        setFirstName(localStorage.getItem("firstName"));
+        setLastName(localStorage.getItem("lastName"));
+        setPincode(localStorage.getItem("pincode"));
         setLoader(false);
       })
       .catch(error => console.error('Error:', error));
   }, [update]);
 
-  console.log(`firstname : ${firstName}`);
   return (
 
     loader ? <Loader />

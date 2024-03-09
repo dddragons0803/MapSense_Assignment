@@ -13,6 +13,9 @@ function Login({ setFirstName, firstName,
 
     const handleShowStatistics = () => {
         if (firstName && lastName && pincode) {
+            localStorage.setItem("firstName", firstName);
+            localStorage.setItem("lastName", lastName);
+            localStorage.setItem("pincode", pincode);
             navigate("/table")
         } else {
             alert("Please fill in all fields before proceeding.");

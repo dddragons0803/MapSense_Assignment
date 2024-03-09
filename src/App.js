@@ -21,6 +21,9 @@ function App() {
         pincode={pincode} />} />
 
       <Route path="table" element={<Table
+        setFirstName={setFirstName}
+        setLastName={setLastName}
+        setPincode={setPincode}
         firstName={firstName}
         lastName={lastName}
         pincode={pincode} />}
