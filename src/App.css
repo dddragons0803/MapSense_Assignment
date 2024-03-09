@@ -1,21 +1,17 @@
 /* App.css */
-.app {
+
+/* import BackgroundImage from './assets/Background.png'; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login {
   display: flex;
   height: 100vh;
   max-width: 100%;
-}
-
-.left-half {
-flex: 0 0 57%;
- width: 65%;
-}
-
-.right-half {
-  flex: 1;
-  padding: 10px;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
 }
 
 
@@ -31,4 +27,211 @@ flex: 0 0 57%;
 
 label {
   margin-top: 10px;
+}
+
+
+
+/* Left Half Start */
+
+.left-half {
+  /* flex: 0 0 57%; */
+  width: 65%;
+}
+
+.left-half-content {
+  /* display: flex;
+  flex-direction: column;
+  position: absolute; */
+  /* width: 57%; */
+  height: 100vh;
+  background-image: url('../public/assets/Background.png');
+  background-size: cover;
+  /* Cover the entire left half of the container */
+  background-position: left;
+}
+
+.data {
+  /* position: absolute;
+  z-index: 10;
+  color: aliceblue;
+  padding: 0;
+  top: 7%;
+  left: 5%; */
+  color: white;
+  padding: 40px;
+}
+
+.data h2 {
+  font-size: 4.3rem;
+  font-weight: 900;
+}
+
+.data p {
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding: 0;
+  margin-top: 10px;
+  width: 43%;
+  font-family: roboto;
+}
+
+.covidimage {
+  /* max-width: 100%; 
+  height: 100vh;  */
+  width: 100%;
+  height: 100vh;
+  filter: brightness(0.7);
+}
+
+
+/* right half */
+.right-half {
+  flex: 1;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.logoimage {
+  height: 70px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+h4 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 900;
+  display: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+
+.form-label {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 500;
+  /* margin-right: 10px;  */
+  margin-bottom: 17px;
+  margin-left: 15%;
+  color: rgb(36, 34, 34);
+}
+
+.form-input {
+  margin-top: 6px;
+  /* justify-content: center; */
+  flex: 2;
+  width: 79.5%;
+  height: 38px;
+  border: none;
+  padding: 8px;
+  background-color: #ECECEC;
+  border-radius: 5px;
+  /* margin-left: 30px; */
+}
+
+.form-input::placeholder {
+  padding: 10px;
+  /* Add padding to the placeholder text */
+  font-size: 16px;
+}
+
+.form-button {
+
+  flex: 1;
+  width: 70%;
+  /* justify-content: center; */
+  margin-top: 20px;
+  padding: 20px 10px;
+  color: #ECECEC;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  margin-left: 15%;
+  cursor: pointer;
+}
+
+.form-button.disabled {
+  background-color: #ccc;
+  /* Change the background color to a visually subdued color */
+  color: #666;
+  /* Change the text color to a subdued color */
+  cursor: not-allowed;
+  /* Change the cursor to indicate the button is not clickable */
+}
+
+.stats {
+  margin-top: 35px;
+  background-color: #332272;
+  margin-bottom: 10px;
+}
+
+.reset {
+  background-color: #FF3838;
+}
+
+
+@media (max-width: 768px) {
+  .left-half {
+    display: none;
+  }
+
+  h4 {
+    display: block;
+  }
+}
+
+
+/* Loader Css */
+
+.loader--ring {
+  display: inline-block;
+  position: fixed;
+  top: 40%;
+  left: 49%;
+  height: 200px;
+  width: 200px;
+}
+
+.loader--ring div {
+  display: block;
+  position: absolute;
+  animation: loader--ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border: 6px solid #fff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-color: #00539f transparent transparent transparent;
+  margin: 6px;
+  height: 70px;
+  width: 70px;
+}
+
+.loader--ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.loader--ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.loader--ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes loader--ring {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
 }
