@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Table.css'
 import './Button.css'
 import Loader from '../component/Loader'
 
-const Table = ({ firstName, lastName, pincode, setFirstName, setLastName, setPincode }) => {
+const Table = ({ firstName, lastName, pincode, setFirstName, setLastName, setPincode,setAuth }) => {
 
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
   const [loader, setLoader] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://65e5e94cd7f0758a76e7bb2d.mockapi.io/api/v1/findByPincode?pincode=${localStorage.getItem("pincode")}`)
@@ -24,6 +25,13 @@ const Table = ({ firstName, lastName, pincode, setFirstName, setLastName, setPin
       })
       .catch(error => console.error('Error:', error));
   }, [update]);
+
+  const handleBack=()=>{
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("pincode");
+    setAuth(false);
+  }
 
   return (
 
@@ -85,11 +93,9 @@ const Table = ({ firstName, lastName, pincode, setFirstName, setLastName, setPin
 
         <div className='buttons'>
           <div>
-            <Link to='/' >
-              <button className="table-button back" type="button">
+              <button className="table-button back" type="button" onClick={handleBack}>
                 Go Back
               </button>
-            </Link>
 
           </div>
           <div>

@@ -1,9 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function Login({ setFirstName, firstName,
-    setLastName, lastName, setPincode, pincode }) {
-    const navigate = useNavigate();
+    setLastName, lastName, setPincode, pincode, setAuth }) {
 
     const handleResetForm = () => {
         setFirstName('');
@@ -13,10 +11,11 @@ function Login({ setFirstName, firstName,
 
     const handleShowStatistics = () => {
         if (firstName && lastName && pincode) {
+            // console.log(firstName)
             localStorage.setItem("firstName", firstName);
             localStorage.setItem("lastName", lastName);
             localStorage.setItem("pincode", pincode);
-            navigate("/table")
+            setAuth(true);
         } else {
             alert("Please fill in all fields before proceeding.");
         }
