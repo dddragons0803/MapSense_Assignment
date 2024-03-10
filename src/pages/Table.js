@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadUserData, setAuth } from '../actions';
+
 import './Table.css'
 import './Button.css'
 import Loader from '../component/Loader'
 
-const Table = ({ firstName, lastName, pincode, setFirstName, setLastName, setPincode,setAuth }) => {
+const Table = () => {
 
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
   const [loader, setLoader] = useState(true);
-  const navigate = useNavigate();
+  const { firstName, lastName, pincode, auth } = useSelector(state => state.login); 
+  const dispatch = useDispatch();
+  console.log(firstName)
+  console.log(lastName)
+  useEffect(() => {
+    dispatch(loadUserData()); 
+  }, []);
 
   useEffect(() => {
     fetch(`https://65e5e94cd7f0758a76e7bb2d.mockapi.io/api/v1/findByPincode?pincode=${localStorage.getItem("pincode")}`)
       .then(response => response.json())
       .then(data => {
         setData(data);
-        console.log(data, typeof (data));
-        // setUpdate((item)=>!{item});
-        setFirstName(localStorage.getItem("firstName"));
-        setLastName(localStorage.getItem("lastName"));
-        setPincode(localStorage.getItem("pincode"));
+   
         setLoader(false);
       })
       .catch(error => console.error('Error:', error));
@@ -30,7 +35,7 @@ const Table = ({ firstName, lastName, pincode, setFirstName, setLastName, setPin
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
     localStorage.removeItem("pincode");
-    setAuth(false);
+    dispatch(setAuth(false)); 
   }
 
   return (

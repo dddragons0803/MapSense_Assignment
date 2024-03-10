@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setFirstName, setLastName, setPincode, setAuth } from '../actions'; 
 
-function Login({ setFirstName, firstName,
-    setLastName, lastName, setPincode, pincode, setAuth }) {
+function Login({ firstName, lastName, pincode, setFirstName, setLastName, setPincode, setAuth }) {
 
     const handleResetForm = () => {
         setFirstName('');
@@ -11,7 +12,6 @@ function Login({ setFirstName, firstName,
 
     const handleShowStatistics = () => {
         if (firstName && lastName && pincode) {
-            // console.log(firstName)
             localStorage.setItem("firstName", firstName);
             localStorage.setItem("lastName", lastName);
             localStorage.setItem("pincode", pincode);
@@ -91,4 +91,17 @@ function Login({ setFirstName, firstName,
     )
 }
 
-export default Login
+const mapStateToProps = (state) => ({
+    firstName: state.login.firstName,
+    lastName: state.login.lastName,
+    pincode: state.login.pincode,
+});
+
+const mapDispatchToProps = {
+    setFirstName,
+    setLastName,
+    setPincode,
+    setAuth
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
